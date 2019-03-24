@@ -97,7 +97,7 @@ public class CrimeFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.delete:
                 CrimeLab.get(getActivity()).deleteCrime(mCrime);
-                getActivity().onBackPressed();
+                //getActivity().onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -191,7 +191,6 @@ public class CrimeFragment extends Fragment {
         }
 
         mPhotoButton = (ImageButton) v.findViewById(R.id.crime_camera);
-        mPhotoView = (ImageView) v.findViewById(R.id.crime_photo);
 
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         boolean canTakePhoto = mPhotoFile != null &&
@@ -214,7 +213,16 @@ public class CrimeFragment extends Fragment {
                 startActivityForResult(captureImage, REQUEST_PHOTO);
             }
         });
+
         mPhotoView = (ImageView) v.findViewById(R.id.crime_photo);
+        mPhotoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), DialogFragment.class);
+                i.putExtra("crimeId", mCrime.getId());
+                startActivity(i);
+            }
+        });
 
         updatePhotoView();
 
@@ -274,7 +282,8 @@ public class CrimeFragment extends Fragment {
     }
 
     private void updateDate() {
-        mDateButton.setText(mCrime.getDate().toString());
+        String date = String.format("%1$s %2$td %2$tB %2$tY", "Дата:", mCrime.getDate());
+        mDateButton.setText(date);
     }
 
     private String getCrimeReport() {

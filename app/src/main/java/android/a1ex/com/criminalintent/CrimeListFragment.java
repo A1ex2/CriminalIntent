@@ -34,6 +34,7 @@ public class CrimeListFragment extends Fragment {
     public interface Callbacks {
         void onCrimeSelected(Crime crime);
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -183,7 +184,9 @@ public class CrimeListFragment extends Fragment {
         public void bind(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+
+            String date = String.format("%1$s %2$td %2$tB %2$tY", "Дата:", mCrime.getDate());
+            mDateTextView.setText(date);
             mSolvedImageView.setVisibility(crime.getSolved() ? View.VISIBLE : View.GONE);
         }
 

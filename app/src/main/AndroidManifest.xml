@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.a1ex.com.criminalintent">
-    <uses-feature android:name="android.hardware.camera"
-        android:required="false"
-        />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -15,13 +16,17 @@
         <activity android:name=".CrimeListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".DialogFragment"
+            android:parentActivityName=".CrimePagerActivity"></activity>
+        <activity
             android:name=".CrimePagerActivity"
-            android:parentActivityName=".CrimeListActivity">
-        </activity>
+            android:parentActivityName=".CrimeListActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="android.a1ex.com.criminalintent.fileprovider"
@@ -29,7 +34,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/files"/>
+                android:resource="@xml/files" />
         </provider>
     </application>
 

@@ -43,7 +43,7 @@ public class CrimeLab {
         mDatabase.delete(CrimeTable.NAME, CrimeTable.Cols.UUID + " = ?",
                 new String[]{uuidString});
 
-        Toast.makeText(mContext, "delete crime", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.delete_crime, Toast.LENGTH_SHORT).show();
     }
 
     public List<Crime> getCrimes() {
